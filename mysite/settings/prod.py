@@ -1,11 +1,11 @@
 from .common import *  # noqa
 
 # database settings
-"""DATABASES = {
+DATABASES = {
     'default': dj_database_url.config(
         default = config('DATABASE_URL')
     )
-}"""
+}
 
 # email settings
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')

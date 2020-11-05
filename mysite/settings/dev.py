@@ -1,4 +1,4 @@
-from .common import *
+from .common import *  # noqa
 
 # database settings
 DATABASES = {
@@ -7,19 +7,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-"""
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'social',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}"""
 
 # email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

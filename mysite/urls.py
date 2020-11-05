@@ -39,7 +39,7 @@ sitemaps = {
 
 urlpatterns = [
     re_path(r'^home/$',subjects_views.HomePageView.as_view(), name='home'),
-    re_path(r'^$',subjects_views.TrendingPageView.as_view(), name='trending'),
+    re_path(r'^$',auth_views.LoginView.as_view(extra_context={'form_filling': True}),name='login'),
     re_path(r'^s/(?P<board>[-\w]+)/(?P<subject>[-\w]+)/$',
         subjects_views.subject_detail,
         name='subject_detail'),

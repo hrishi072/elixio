@@ -1,75 +1,70 @@
 {% load static %}
-
-<nav class="navbar sticky-top navbar-expand-lg navbar-expand-md navbar-light extra_navbar_styling" style="background-color: #181818;">
+<nav class="navbar sticky-top navbar-expand-lg  navbar-dark " style="background-color: #181818;">
   <div class="container">
     <a class="navbar-brand mb-1" href="{% url 'home' %}">
-      <img src="{% static 'img/Elixio_logo.jpg' %}?lastmod=1" alt="Elixio" height="30px">
+      <img src="{% static 'img/Elixio_logo.png' %}?lastmod=1" alt="Elixio" height="30px">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="color: #ffffff;"></span>
     </button>
+  
+  
+
     <div class="collapse navbar-collapse" id="topNavbar">
 
       <ul class="navbar-nav mr-auto">
+        {% if request.user.is_authenticated %}
         <form class="form-inline"
               action="{% if not bv %}{% url 'search' %}{% else %}{% url 'board_search' board.slug %}{% endif %}"
               method="get"
               autocomplete="off">
+              
               <div class="input-group ">
-                <input type="text" class="form-controly"
+                <input type="text" class="form-controly" style="border:none;"
                 name="query"
                 placeholder="{% if not bv %}Search Elixio{% else %}Search b/{{board.slug}}{% endif %}">
                 <div class="input-group-append">
-                  <button class="btn btn-primary"><i class="fa fa-search"></i></button>  
+                  <button class="btn btn-outline-light"><i class="fa fa-search"></i></button>  
                  </div>
               </div>
-         
         </form>
+        {% endif%}
         <br>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'trending' %}">Trending</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link"
              href="{% if request.user.is_authenticated %}#{% else %}{% url 'view_all_boards' %}{% endif %}"
              id="boards_container_trigger">Boards</a>
         </li>
-        {%else%}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'trending' %}">Trending</a>
-        </li>
         {% endif %}
       </ul>
-
-      {% if request.user.is_authenticated %}
-      <a href="{% url 'inbox' %}" class="mr-3" id="check_messages"><i class="fa fa-inbox fa-lg" aria-hidden="true"></i><span id="messages_count"></span></a>
-        <a href="{% url 'activities' %}" class="mr-3" id="check_activities"><i class="fa fa-bell-o fa-lg" aria-hidden="true"></i><span id="activities_count"></span></a>
-        <a href="{% url 'new_subject' %}" class="mr-3"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-
-        <div class="dropdown">
-          <a href="#" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{request.user.profile.get_picture}}" style="width: 36px; height: 36px; border-radius: 50px;">
-          </a>
-          <div class="dropdown-menu" aria-labelledby="user_dropdown" style="right: 0; left: auto;">
-            <a class="dropdown-item" href="{% url 'user_profile' request.user.username %}">Your Profile</a>
-            <a class="dropdown-item" href="{% url 'view_following' %}">Following</a>
-            <a class="dropdown-item" href="{% url 'user_subscription_list' request.user.username %}">Subscriptions</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'new_board' %}">Create Board</a>
-            <a class="dropdown-item" href="{% url 'user_created_boards' request.user.username %}">Your Boards</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'profile_edit' %}">Account Settings</a>
-            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-          </div>
-        </div>
-      {% else %}
-        <a href="{% url 'login' %}" class="btn btn-primary btn-sm mr-2">Login</a>
-        <a href="{% url 'signup' %}" class="btn btn-success btn-sm">Sign Up</a>
-      {% endif %}
     </div>
+
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'inbox' %}" class="mr-3" id="check_messages"><i class="fa fa-inbox fa-lg" aria-hidden="true"></i><span id="messages_count"></span></a>
+      <a href="{% url 'activities' %}" class="mr-3" id="check_activities"><i class="fa fa-bell-o fa-lg" aria-hidden="true"></i><span id="activities_count"></span></a>
+      <a href="{% url 'new_subject' %}" class="mr-3"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+
+      <div class="dropdown">
+        <a href="#" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="{{request.user.profile.get_picture}}" style="width: 36px; height: 36px; border-radius: 50px;">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="user_dropdown" style="right: 0; left: auto;">
+          <a class="dropdown-item" href="{% url 'user_profile' request.user.username %}">Your Profile</a>
+          <a class="dropdown-item" href="{% url 'view_following' %}">Following</a>
+          <a class="dropdown-item" href="{% url 'user_subscription_list' request.user.username %}">Subscriptions</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'new_board' %}">Create Board</a>
+          <a class="dropdown-item" href="{% url 'user_created_boards' request.user.username %}">Your Boards</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'profile_edit' %}">Account Settings</a>
+          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </div>
+   
+    {% endif %}
   </div>
 </nav>

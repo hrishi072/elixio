@@ -18,16 +18,6 @@ from .forms import SubjectForm
 from .models import Subject
 
 
-def get_trending_subjects():
-    try:
-        subjects = Subject.get_subjects()
-        for subject in subjects:
-            subject.set_rank()
-        trending_subjects = subjects.order_by('-rank_score')
-    except OperationalError:
-        trending_subjects = None
-    return trending_subjects
-
 
 def get_home_subjects():
     try:
@@ -52,17 +42,6 @@ class HomePageView(ListView):
         # Show Sign Up CTA if user is not logged in.
         context['signup_quote'] = True
         return context
-
-
-class TrendingPageView(ListView):
-    """
-    Basic ListView implementation to call the trending subjects list.
-    """
-    model = Subject
-    queryset = get_trending_subjects()
-    paginate_by = 15
-    template_name = 'subjects/trending.html'
-    context_object_name = 'subjects'
 
 
 
