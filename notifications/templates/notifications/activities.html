@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load boards_tags %}
+{% load humanize %}
+
+{% block title %}<title>Notifications | Elixio</title>{% endblock %}
+
+{% block content %}
+
+{% include "includes/page_heading.html" with text="Notifications" %}
+{% for event in events %}
+<div class="card mb-2" style="border:none; border-bottom:1px solid #dcd7d7;">
+  <div class="card-body p-4">
+  {% if event.Object %}
+    <h6>
+      <a href="{{ event.Object.get_absolute_url }}" class="card-link">{{event}}</a>
+    </h6>
+    <span class="text-muted"><i class="fa fa-clock-o"></i> {{event.created|naturaltime}}</span>
+  {% else %}
+    {% if event.notif_type == 'sent_msg_request' %}
+    <h6>
+      <a href="{% url 'all_message_requests' %}" class="card-link">{{event}}</a>
+    </h6>
+    <span class="text-muted"><i class="fa fa-clock-o"></i> {{event.created|naturaltime}}</span>
+    {% else %}
+      <h6>
+        <a href="{% url 'user_profile' event.Actor.username %}" class="card-link">{{event}}</a>
+      </h6>
+      <span class="text-muted"><i class="fa fa-clock-o"></i> {{event.created|naturaltime}}</span>
+    {% endif %}
+  {% endif %}
+  </div>
+</div>
+{% empty %}
+<div class="card">
+  <div class="card-body text-center">
+    <h4 class="card-title">No Notifications Yet!</h4>
+  </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

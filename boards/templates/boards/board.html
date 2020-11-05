@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}<title>{{ board.title }} | Elixio</title>{% endblock %}
+
+{% block content %}
+
+{% include "includes/page_heading.html" with text=board.title|upper %}
+{% if subjects %}
+  {% include "includes/partial_subject.html" with subjects=subjects %}
+{% else %}
+  <div class="card p-4 my-4 mx-0">
+    <h6 class="text-center">No Subjects Found</b></h6>
+    <div style="margin:0 auto;">
+    <p class="text-muted">Be the first one to post a subject in this board.</p>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock %}

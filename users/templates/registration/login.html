@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Login | Elixio</title>{% endblock %}
+
+{% block form_content %}
+{% include "includes/page_heading.html" with text="Login to Elixio" %}
+
+<form action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-primary btn-block">Login</button>
+  <div class="text-center mt-4">
+    <a href="{% url 'password_reset' %}">Forgot password?</a>
+  </div>
+</form>
+
+<div class="card text-center mt-4">
+  <div class="card-body">
+    Don't have an account? <a href="{% url 'signup' %}" class="card-link">Sign Up</a>
+  </div>
+</div>
+{% endblock %}

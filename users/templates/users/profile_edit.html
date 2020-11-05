@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}<title>Account Settings | Elixio</title>{% endblock %}
+
+{% block content %}
+{% include "includes/page_heading.html" with text="Account Settings" %}
+
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'profile_edit' %}">Edit profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'picture_change' %}">Add picture</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'password_change' %}">Change password</a>
+  </li>
+</ul>
+
+<form action="{% url 'profile_edit' %}" method="post">
+  {% csrf_token %}
+  {{ user_form|crispy }}
+  <div class="form-group">
+    <label for="id_dob">Date of Birth</label>
+    {% render_field profile_form.dob class="form-control" %}
+  </div>
+  <button type="submit" class="btn btn-success btn-block">Save</button>
+</form>
+{% endblock %}

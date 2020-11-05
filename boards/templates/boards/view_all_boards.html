@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Subscribe Boards | Elixio</title>{% endblock %}
+
+{% block content %}
+
+{% include "includes/page_heading.html" with text="Subscribe Boards" %}
+<div class="alert alert-light text-center" role="alert">
+  Click the <span class="font-weight-bold">Subscribe</span> button to populate your home feed with interesting board's subjects.
+</div>
+{% if boards %}
+  {% include "includes/partial_board.html" with boards=boards %}
+{% else %}
+  <div class="card p-4 my-4 mx-0">
+    <h6 class="text-center">No Boards Found</h6>
+    <div style="margin:0 auto;">
+    <p class="text-muted">There are no boards created yet.</p>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock %}
