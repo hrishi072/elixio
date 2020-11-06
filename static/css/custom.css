@@ -14,9 +14,10 @@ body {
 p {
   font-size: 14px;
   margin-bottom: 0;
+  color : #ffffff;
 }
 .dropdown-item {
-  color: #607d8b;
+  color: #ffffff;
 }
 span#activities_count,
 span#messages_count {
@@ -32,10 +33,10 @@ span#messages_count {
 }
 .fa-star,
 .fa-star-o {
-  color: #ffc107;
+  color: #ff4500;
 }
 a {
-  color: #607d8b;
+  color: #ffffff;
 }
 .pageHeadingH1 {
   border-bottom: 1px solid transparent;
@@ -56,12 +57,8 @@ a {
   box-shadow: 0 0 2px 1px #e6e1e2;
   padding-bottom: 50px;
 }
-.extra_navbar_styling {
-  background: #fff;
-  border-top: 2px solid #1f89de;
-  box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 3px rgba(12, 13, 14, 0.1),
-    0 4px 20px rgba(12, 13, 14, 0.035), 0 1px 1px rgba(12, 13, 14, 0.025);
-}
+
+
 input[name="query"]#search {
   background: url(/static/img/search_icon.png) 16px 8px no-repeat;
   background-color: rgb(246, 247, 248);

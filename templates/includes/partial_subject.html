@@ -53,9 +53,9 @@
            {{ subject.created|naturaltime }}
         </span>
       </p>
-      <h5><a class="card-link">{{ subject.title|emoticons }}</a></h5>
+      <h5><a class="card-link" style="color: #ffffff;">{{ subject.title|emoticons }}</a></h5>
       <p>{{ subject.body|truncatewords_html:50|urlize }}</p>
-
+      <br>
       {% if subject.photo %}
       <div class="card-photo-stlying">
         <img src="{{ subject.photo.url }}" width="80%">
