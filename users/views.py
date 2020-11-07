@@ -25,10 +25,11 @@ from utils import check_image_extension
 
 from .forms import ProfileEditForm, SignupForm, UserEditForm
 from .models import Profile
+from .decorattors import unauthenticated_user
+
 
 def register_user(request):
     form_filling = True
-
     if request.method == 'POST':
         user_form = SignupForm(data=request.POST or None)
         if not user_form.is_valid():

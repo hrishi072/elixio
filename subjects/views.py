@@ -19,6 +19,7 @@ from .models import Subject
 
 
 
+
 def get_home_subjects():
     try:
         home_subjects = Subject.get_subjects()

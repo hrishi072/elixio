@@ -1,4 +1,5 @@
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 
 from .models import Subject
 
@@ -14,3 +15,5 @@ def user_is_subject_author(f):
     wrap.__doc__ = f.__doc__
     wrap.__name__ = f.__name__
     return wrap
+
+
