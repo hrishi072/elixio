@@ -15,6 +15,7 @@ Including another URLconf
 """
 
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -37,7 +38,7 @@ sitemaps = {
 urlpatterns = [
     
 
-    re_path(r'^home/$',subjects_views.HomePageView.as_view(), name='home'),
+    re_path(r'^home/$',login_required(subjects_views.HomePageView.as_view()), name='home'),
     re_path(r'^$',users_views.user_login,name='login'),
     re_path(r'^s/(?P<board>[-\w]+)/(?P<subject>[-\w]+)/$',
         subjects_views.subject_detail,

@@ -29,9 +29,6 @@ def get_home_subjects():
 
 
 class HomePageView(ListView):
-    """
-    Basic ListView implementation to call the latest subjects list.
-    """
     model = Subject
     queryset = get_home_subjects()
     paginate_by = 15
