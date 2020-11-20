@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}<title>Account Settings | Elixio</title>{% endblock %}
+
+{% block content %}
+{% include "includes/page_heading.html" with text="Account Settings" %}
+
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'profile_edit' %}">Edit profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'picture_change' %}">Add picture</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'password_change' %}">Change password</a>
+  </li>
+</ul>
+
+<div class="container" style="text-align:center;">
+  <img src="{{request.user.profile.get_picture}}" width="300px" height="300px">
+</div>
+
+<form action="{% url 'picture_change' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_dp">Upload a picture</label>
+    <input type="file" class="form-control-file" id="id_dp" name="dp" accept="image/*">
+  </div>
+ <button type="submit" class="btn btn-primary btn-block" id="submit_pic">Submit</button>
+</form>
+{% endblock %}

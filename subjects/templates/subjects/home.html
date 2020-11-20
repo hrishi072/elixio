@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+{% include "includes/page_heading.html" with text="Homepage" %}
+{% include "includes/partial_subject.html" with subjects=subjects %}
+{%endif%}
+{% endblock content %}
+

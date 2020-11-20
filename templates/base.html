@@ -1,6 +1,8 @@
 {% load static boards_tags %}<!doctype html>
+{% load pwa %}
 <html lang="en">
   <head>
+    {% progressive_web_app_meta %}
     {% block title %}
       <title>Elixio - A social network inspired by reddit</title>
     {% endblock %}

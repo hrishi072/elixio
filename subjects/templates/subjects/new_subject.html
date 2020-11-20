@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Create New Post | Elixio</title>{% endblock %}
+
+{% block form_content %}
+{% include "includes/page_heading.html" with text="Create Post" %}
+
+<form action="{% url 'new_subject' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ subject_form|crispy }}
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+</form>
+{% endblock %}
