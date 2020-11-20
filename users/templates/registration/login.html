@@ -8,11 +8,21 @@
 
 <form action="{% url 'login' %}" method="post">
   {% csrf_token %}
-  {{ form|crispy }}
-  <button type="submit" class="btn btn-primary btn-block">Login</button>
-  <div class="text-center mt-4">
-    <a href="{% url 'password_reset' %}">Forgot password?</a>
-  </div>
+
+  <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
+      Username<span class="asteriskField">*</span> </label>
+<div class=""> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+        maxlength="150" class="textinput textInput form-control" required="" id="id_username" id="div_id_password"
+        class="form-group"> <label for="id_password" class=" requiredField"><br>
+        Password<span class="asteriskField">*</span> </label>
+      <div class=""> <input type="password" name="password" autocomplete="current-password"
+          class="textinput textInput form-control" required="" id="id_password"> </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+    <div class="text-center mt-4">
+      <a href="{% url 'password_reset' %}">Forgot password?</a>
+    </div>
 </form>
 
 <div class="card text-center mt-4">

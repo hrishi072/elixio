@@ -27,7 +27,7 @@ from .forms import ProfileEditForm, SignupForm, UserEditForm
 from .models import Profile
 from .decorattors import unauthenticated_user
 
-
+@unauthenticated_user
 def register_user(request):
     form_filling = True
     if request.method == 'POST':
@@ -87,7 +87,7 @@ def user_logout(request):
     Logout the current user.
     """
     auth_logout(request)
-    return redirect('/')
+    return redirect('login')
 
 
 class UsersPageView(ListView):
@@ -339,3 +339,18 @@ def all_friends(request):
         'p': p,
         'p_obj': p_obj
     })
+
+@unauthenticated_user
+def user_login(request):
+    context = {}    
+    if request.method == 'POST':
+        email = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('home')
+        else:
+            messages.success(request, "Login Failed! Try Again")
+            return redirect('login')
+    return render(request, 'registration/login.html', context)

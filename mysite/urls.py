@@ -38,7 +38,7 @@ urlpatterns = [
     
 
     re_path(r'^home/$',subjects_views.HomePageView.as_view(), name='home'),
-    re_path(r'^$',auth_views.LoginView.as_view(extra_context={'form_filling': True}),name='login'),
+    re_path(r'^$',users_views.user_login,name='login'),
     re_path(r'^s/(?P<board>[-\w]+)/(?P<subject>[-\w]+)/$',
         subjects_views.subject_detail,
         name='subject_detail'),
@@ -86,11 +86,8 @@ urlpatterns = [
     re_path(r'^activities/check/$', notifications_views.check_activities, name='check_activities'),
 
     # login / logout urls
-    re_path(r'^login/$',
-            auth_views.LoginView.as_view(extra_context={'form_filling': True}),
-            name='login'),
-    re_path(r'^logout/$',
-            auth_views.LogoutView.as_view(next_page="/"),
+    re_path(r'^login/$',users_views.user_login,name='login'),
+    re_path(r'^logout/$',users_views.user_logout,
             name='logout'),
     re_path(r'^logout-then-login/$',
             auth_views.logout_then_login,
