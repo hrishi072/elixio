@@ -1,4 +1,5 @@
 {% load static %}
+{% if request.user.is_authenticated %}
 <nav class="navbar sticky-top navbar-expand-lg  navbar-dark " style="background-color: #181818;">
   <div class="container">
     <a class="navbar-brand mb-1" href="{% url 'home' %}">
@@ -48,7 +49,7 @@
       <a href="{% url 'activities' %}" class="mr-3" id="check_activities"><i class="fa fa-bell-o fa-lg" aria-hidden="true"></i><span id="activities_count"></span></a>
       <a href="{% url 'new_subject' %}" class="mr-3"><i class="fa fa-plus  fa-lg" aria-hidden="true"></i></a>
 
-      <div class="dropdown">
+      <div class="dropdown" style="border-radius: 5px">
         <a href="#" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="{{request.user.profile.get_picture}}" style="width: 36px; height: 36px; border-radius: 50px;">
         </a>
@@ -68,3 +69,4 @@
     {% endif %}
   </div>
 </nav>
+{% endif %}

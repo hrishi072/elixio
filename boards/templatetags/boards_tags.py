@@ -18,12 +18,6 @@ def boards_container_items(user):
     return {'boards_list': boards_list, 'user': user}
 
 
-@register.inclusion_tag('includes/top_five.html')
-def top_five_boards():
-    """Returns a dict containing top five boards list."""
-    boardslist = Board.objects.all()
-    boardslist = sorted(boardslist, key=lambda instance: instance.recent_posts(), reverse=True)[:5]
-    return {'boards_list': boardslist, 'top_boards': True}
 
 
 @register.filter(name='markdown')

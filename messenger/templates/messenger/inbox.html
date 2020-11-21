@@ -11,46 +11,24 @@
       {% endfor %}
     </ul>
 
-    <script type="text/javascript">
-    // Load new messages
-    $(document).ready(function(){
-      function load_new_messages() {
-        var $last_message_id=$("#msg-container li:last-child").attr('message-id');
-        var msg_container = $("#msg-container");
-        $.ajax({
-          url: '{% url "load_new_messages" %}',
-          data: {
-            'username': '{{ active }}',
-            'last_message_id': $last_message_id,
-          },
-          cache: false,
-          success: function (data) {
-            $(msg_container).append(data);
-            $('.conversation').scrollTop($('.conversation')[0].scrollHeight);
-          },
-          complete: function () {
-            window.setTimeout(load_new_messages, 2000); // refresh after 2 seconds
-          }
-        });
-      };
-      load_new_messages();
-    });
-    </script>
+   
     {% else %}
 
-    <div class="jumbotron" id="message_jumbotron">
-      <h2>Start a new conversation.</h2>
+    <div class="jumbotron" style="background-color: #0e0e0e;" id="message_jumbotron">
+      <h2 style="color: white;"><b>Start a new conversation.</b></h2>
       <p class="lead">Keep your chat short &amp; concise.</p>
       <hr class="my-4">
       <p>If you don't have any contacts, click the button below to send message requests to network users.</p>
+      <br>
       <p class="lead">
-        <a class="btn btn-primary btn-sm" href="{% url 'view_all_users' %}" role="button">Send Requests <i class="fa fa-send-o"></i></a>
+        <a class="btn btn-primary btn-sm" href="{% url 'view_all_users' %}" role="button" style="background: #ff4500;">Send Requests <i class="fa fa-send-o"></i></a>
       </p>
     </div>
     <ul id="msg-container" style="padding:0px;"></ul>
     {% endif %}
 
     <script type="text/javascript">window.onload = $('.conversation').scrollTop($('.conversation')[0].scrollHeight);</script>
+ 
   </div>
   <div class="chat-box">
     <img src="{{ user.profile.get_picture }}" class="picture">

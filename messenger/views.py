@@ -58,44 +58,6 @@ def messages(request, username):
 
 @login_required
 @ajax_required
-def load_new_messages(request):
-    """
-    Loads new messages via ajax.
-    """
-    last_message_id = request.GET.get('last_message_id')
-    username = request.GET.get('username')
-    user = User.objects.get(username=username)
-
-    if request.user in user.profile.contact_list.all():
-        chat_msgs = Message.objects.filter(user=request.user,
-                                           conversation__username=username,
-                                           id__gt=last_message_id).exclude(from_user=request.user)
-        if chat_msgs:
-            chat_msgs.update(is_read=True)
-            return render(request, 'messenger/includes/partial_load_more_messages.html', {'chat_msgs': chat_msgs})
-        else:
-            return HttpResponse('')
-
-
-@login_required
-@ajax_required
-def load_last_twenty_messages(request):
-    load_from_msg_id = request.GET.get('load_from_msg_id')
-    username = request.GET.get('username')
-    user = User.objects.get(username=username)
-    if request.user in user.profile.contact_list.all():
-        chat_msgs = Message.objects.filter(user=request.user,
-                                          conversation__username=username,
-                                          id__lt=load_from_msg_id)
-        if chat_msgs:
-            chat_msgs.update(is_read=True)
-            return render(request, 'messenger/includes/partial_load_more_messages.html', {'chat_msgs': chat_msgs})
-        else:
-            return HttpResponse('')
-
-
-@login_required
-@ajax_required
 def delete(request):
     return HttpResponse()
 

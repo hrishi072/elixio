@@ -1,13 +1,21 @@
-{% extends "base_home.html" %}
+{% extends "base.html" %}
 {% load static %}
+
 
 {% block head %}
   <link href="{% static 'css/messages.css' %}" rel="stylesheet">
   <script src="{% static 'js/messages.js' %}"></script>
 {% endblock head %}
 
-{% block content %}
-  {% include "includes/page_heading.html" with text="Messages" %}
+
+
+{% block data %}
+{% include "includes/messages.html" %}
+
+
+<div class="container my-4 " style="background-color: #181818; border-radius: 10px;">
+      {% block content %}
+      {% include "includes/page_heading.html" with text="Messages" %}
   <div class="row">
     <div class="col-md-12">
       {% include 'messenger/includes/partial_conversations.html' with conversations=conversations active=active %}
@@ -21,4 +29,11 @@
     </div>
     <script src="{% static 'js/box-reziser.js'%}"></script>
   </div>
+        {% endblock %}
+      {% if page_obj %}
+      {% include "pagination.html" %}
+      {% endif %}
+    </div>
 {% endblock %}
+
+

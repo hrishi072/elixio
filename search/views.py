@@ -6,9 +6,6 @@ from subjects.models import Subject
 
 
 def search(request, board_slug=None):
-    """
-    Handles search functionality for all subjects or within some board.
-    """
     if 'query' in request.GET:
         q = request.GET.get('query', None)
         if not board_slug:

@@ -21,9 +21,6 @@ from .models import Board
 
 
 class BoardsPageView(ListView):
-    """
-    Basic ListView implementation to call the boards list.
-    """
     model = Board
     queryset = Board.objects.all()
     paginate_by = 20
@@ -32,9 +29,6 @@ class BoardsPageView(ListView):
 
 
 class BoardPageView(ListView):
-    """
-    Basic ListView implementation to call the subjects list per board.
-    """
     model = Subject
     paginate_by = 20
     template_name = 'boards/board.html'
@@ -54,9 +48,6 @@ class BoardPageView(ListView):
 
 
 class UserSubscriptionListView(LoginRequiredMixin, ListView):
-    """
-    Basic ListView implementation to call the subscriptions list per user.
-    """
     model = Board
     paginate_by = 10
     template_name = 'boards/user_subscription_list.html'
@@ -71,9 +62,6 @@ class UserSubscriptionListView(LoginRequiredMixin, ListView):
 @login_required
 @ajax_required
 def subscribe(request, board):
-    """
-    Subscribes a board & returns subscribers count.
-    """
     board = get_object_or_404(Board,
                               slug=board)
     user = request.user
@@ -85,9 +73,6 @@ def subscribe(request, board):
 
 
 class UserCreatedBoardsPageView(LoginRequiredMixin, ListView):
-    """
-    Basic ListView implementation to call the boards list per user.
-    """
     model = Board
     paginate_by = 20
     template_name = 'boards/user_created_boards.html'
@@ -101,9 +86,6 @@ class UserCreatedBoardsPageView(LoginRequiredMixin, ListView):
 
 @login_required
 def new_board(request):
-    """
-    Displays a form & handle action for creating new board.
-    """
     board_form = BoardForm()
 
     if request.method == 'POST':

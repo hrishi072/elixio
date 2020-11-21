@@ -51,11 +51,6 @@ class Board(models.Model):
         else:
             return default_picture
 
-    def recent_posts(self):
-        """
-        Counts number of posts posted within last 3 days in a board.
-        """
-        return self.submitted_subjects.filter(created__gte=timezone.now() - timedelta(days=3)).count()
 
 
 def admins_changed(sender, **kwargs):

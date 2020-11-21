@@ -37,8 +37,6 @@ class HomePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Show Sign Up CTA if user is not logged in.
-        context['signup_quote'] = True
         return context
 
 
@@ -65,29 +63,6 @@ def subject_detail(request, board, subject):
 
 
 @login_required
-def deactivate_subject(request, subject):
-    """
-    Handles requests from board admins to deactivate subjects from the board if reported.
-    """
-    subject = get_object_or_404(Subject,
-                                slug=subject)
-    admins = subject.board.admins.all()
-    if request.user in admins:
-        reports = subject.subject_reports.all()
-        board_reports = subject.board.board_reports.all()
-
-        for report in reports:
-            if report in board_reports:
-                subject.active = False
-                subject.save()
-            else:
-                return redirect('home')
-    else:
-        return redirect('home')
-    return redirect('home')
-
-
-@login_required
 def new_subject(request):
     """
     Displays a form & handle action for creating new subject.
@@ -103,33 +78,6 @@ def new_subject(request):
             new_subject.save()
             new_subject.points.add(author)
             new_subject.save()
-
-            # Checks if someone is mentioned in the subject
-            words = new_subject.title + ' ' + new_subject.body
-            words = words.split(" ")
-            names_list = []
-            for word in words:
-
-                # if first two letter of the word is "u/" then the rest of the word
-                # will be treated as a username
-
-                if word[:2] == "u/":
-                    u = word[2:]
-                    try:
-                        user = User.objects.get(username=u)
-                        if user not in names_list:
-                            new_subject.mentioned.add(user)
-                            if request.user is not user:
-                                Notification.objects.create(
-                                    Actor=new_subject.author,
-                                    Object=new_subject,
-                                    Target=user,
-                                    notif_type='subject_mentioned'
-                                )
-                            names_list.append(user)
-                    except:  # noqa: E722
-                        pass
-
             if new_subject.photo:
                 image_compression(new_subject.photo.name)
 
