@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block data %}
+
+{% include "includes/messages.html" %}
+
+<div class="container my-4 " style="background-color: #181818; border-radius: 10px;">
+  <div class="row">
+    <div class="col-lg-8 col-md-8">
+      {% block content %}
+        {% endblock %}
+
+
+      {% if page_obj %}
+      {% include "pagination.html" %}
+      {% endif %}
+    </div>
+    <div class="col-lg-4 col-md-4">
+      {% if bv %}
+      {% include "includes/board_info.html" %}
+      {% else %}
+      <a href="{% url 'new_subject' %}" class="btn btn-primary btn-block mt-4 cta_btn">CREATE POST</a>
+      <a href="{% url 'new_board' %}" class="btn btn-outline-primary btn-block mt-2 cta_btn">CREATE BOARD</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

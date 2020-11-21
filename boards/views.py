@@ -15,7 +15,7 @@ from mysite.decorators import ajax_required
 from subjects.models import Subject
 from utils import check_image_extension
 
-from .decorators import user_is_board_admin, user_is_not_banned_from_board
+from .decorators import user_is_board_admin
 from .forms import BoardForm
 from .models import Board
 
@@ -70,7 +70,6 @@ class UserSubscriptionListView(LoginRequiredMixin, ListView):
 
 @login_required
 @ajax_required
-@user_is_not_banned_from_board
 def subscribe(request, board):
     """
     Subscribes a board & returns subscribers count.
@@ -142,56 +141,3 @@ def edit_board_cover(request, board):
         })
 
 
-@login_required
-@user_is_board_admin
-def banned_users(request, board):
-    """
-    Displays a list of banned users to the board admins.
-    """
-    board = get_object_or_404(Board,
-                              slug=board)
-    users = board.banned_users.all()
-
-    paginator = Paginator(users, 20)
-    page = request.GET.get('page')
-    if paginator.num_pages > 1:
-        p = True
-    else:
-        p = False
-    try:
-        users = paginator.page(page)
-    except PageNotAnInteger:
-        users = paginator.page(1)
-    except EmptyPage:
-        users = paginator.page(paginator.num_pages)
-
-    p_obj = users
-    bv = True
-
-    return render(request, 'boards/banned_users.html', {
-        'board': board,
-        'bv': bv,
-        'page': page,
-        'p_obj': p_obj,
-        'p': p,
-        'users': users
-    })
-
-
-@login_required
-@user_is_board_admin
-def ban_user(request, board, user_id):
-    """
-    Handles requests from board admins to ban users from the board.
-    """
-    board = get_object_or_404(Board,
-                              slug=board)
-    user = get_object_or_404(User,
-                             id=user_id)
-    if board in user.subscribed_boards.all():
-        board.subscribers.remove(user)
-        board.banned_users.add(user)
-        return redirect('banned_users', board=board.slug)
-    else:
-        board.banned_users.remove(user)
-        return redirect('banned_users', board=board.slug)

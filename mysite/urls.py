@@ -47,9 +47,7 @@ urlpatterns = [
     re_path(r'^b/(?P<board>[-\w]+)/$',
         boards_views.BoardPageView.as_view(),
         name='board'),
-    re_path(r'^b/ban_user/(?P<board>[-\w]+)/(?P<user_id>\d+)/$',
-        boards_views.ban_user,
-        name='ban_user'),
+    
     re_path(r'^b/(?P<board>[-\w]+)/edit_board_cover/$',
         boards_views.edit_board_cover,
         name='edit_board_cover'),

@@ -19,61 +19,21 @@
 <body>
   {% include "includes/header.html" %}
 
-
-  {% if not bv %}
-  {% if request.user.is_authenticated %}
-  {% boards_container_items request.user %}
-  {% endif %}
-  {% endif %}
-
-  {% if request.user.is_authenticated %}
-  {% if not form_filling %}
-
   {% if bv %}
   {% include "includes/board_cover.html" %}
   {% if request.user.is_authenticated %}
   {% boards_container_items request.user %}
   {% endif %}
-  {% endif %}
-
-  {% include "includes/messages.html" %}
-
-  <div class="container my-4 " style="background-color: #181818; border-radius: 10px;">
-    <div class="row">
-      <div class="col-lg-8 col-md-8">
-        {% block content %}
-        {% endblock %}
-
-        {% if page_obj %}
-        {% include "pagination.html" %}
-        {% endif %}
-      </div>
-      <div class="col-lg-4 col-md-4">
-        {% if bv %}
-        {% include "includes/board_info.html" %}
-        {% else %}
-        <a href="{% url 'new_subject' %}" class="btn btn-primary btn-block mt-4 cta_btn">CREATE POST</a>
-        <a href="{% url 'new_board' %}" class="btn btn-outline-primary btn-block mt-2 cta_btn">CREATE BOARD</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-{% endif%}  
-
   {% else %}
-  <div class="container mx-auto my-4 form_content_block">
-    <div class="row">
-      <div class="container mx-auto" style="width: 50%;">
-        {% block form_content %}
-        {% endblock %}
-      </div>
-    </div>
-  </div>
+  {% if request.user.is_authenticated %}
+  {% boards_container_items request.user %}
   {% endif %}
+  {% endif %}
+
+  {% block data %}
+  {% endblock%}
+
+
 
   {% include "js.html" %}
 </body>

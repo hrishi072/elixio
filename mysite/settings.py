@@ -34,7 +34,7 @@ SECRET_KEY = 'i%^ix-$uob)l%xtlun0-6kkz_v_zt9&(3o64kqjoiele26j8$+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0','elixio.herokuapp.com']
 
 
 # Application definition

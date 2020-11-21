@@ -25,7 +25,6 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(default=django.utils.timezone.now)),
                 ('updated', models.DateTimeField(auto_now=True)),
                 ('admins', models.ManyToManyField(related_name='inspected_boards', to=settings.AUTH_USER_MODEL)),
-                ('banned_users', models.ManyToManyField(related_name='forbidden_boards', to=settings.AUTH_USER_MODEL)),
                 ('subscribers', models.ManyToManyField(related_name='subscribed_boards', to=settings.AUTH_USER_MODEL)),
             ],
             options={

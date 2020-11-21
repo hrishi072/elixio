@@ -18,7 +18,6 @@ class Board(models.Model):
     cover = models.ImageField(upload_to='board_covers/', blank=True, null=True)
     admins = models.ManyToManyField(User, related_name='inspected_boards')
     subscribers = models.ManyToManyField(User, related_name='subscribed_boards')
-    banned_users = models.ManyToManyField(User, related_name='forbidden_boards')
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
 
