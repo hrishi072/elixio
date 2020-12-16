@@ -1,0 +1,41 @@
+{% load static boards_tags %}
+<!doctype html>
+{% load pwa %}
+<html lang="en">
+
+<head>
+  {% progressive_web_app_meta %}
+  {% block title %}
+  <title>Elixio - A social network inspired by reddit</title>
+  {% endblock %}
+
+  {% include "meta.html" %}
+  {% include "css.html" %}
+  {% include "head_js.html" %}
+
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  {% include "includes/header.html" %}
+
+  {% if bv %}
+  {% include "includes/board_cover.html" %}
+  {% if request.user.is_authenticated %}
+  {% boards_container_items request.user %}
+  {% endif %}
+  {% else %}
+  {% if request.user.is_authenticated %}
+  {% boards_container_items request.user %}
+  {% endif %}
+  {% endif %}
+
+  {% block data %}
+  {% endblock%}
+
+
+
+  {% include "js.html" %}
+</body>
+
+</html>
