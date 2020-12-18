@@ -1,6 +1,6 @@
 <br>
-<div class="card border-light">
-  <div class="card-header" style="color:#607d8b; border-bottom: 2px solid #1f89de; display: inline-block; font-size: 16px; font-weight: 900; letter-spacing: -.4px; margin: 3px 0; padding-bottom: 0; text-transform: uppercase; text-align:center;">
+<div class="card border-light" style="background-color: #0e0e0e;">
+  <div class="card-header" style="color:#607d8b; border-bottom: 2px solid #ff4500; display: inline-block; font-size: 16px; font-weight: 900; letter-spacing: -.4px; margin: 3px 0; padding-bottom: 0; text-transform: uppercase; text-align:center;">
     Get updates now
     <br>
     {% if board in request.user.subscribed_boards.all %}
@@ -9,26 +9,28 @@
         <a href="{% url 'subscribe' board.slug %}" class="btn btn-primary btn-sm" id="subscribe_board" style="margin-bottom:10px;">Subscribe</a>
     {% endif %}
   </div>
-  <ul class="list-group list-group-flush" style="font-size:14px;">
-    <li class="list-group-item text-center text-muted">Board Info</li>
-    <li class="list-group-item"><b>Title: </b>{{board.title}}</li>
-    <li class="list-group-item"><b>Description: </b>{{board.description}}</li>
-    <li class="list-group-item"><b>Total Posts: </b>{{board.submitted_subjects.count}}</li>
-    <li class="list-group-item"><b>Admins: </b>
+<div style="background-color:#0e0e0e;">
+  <ul class="list-group list-group-flush" style="background-color:#0e0e0e; font-size:14px;" >
+    <li class="list-group-item text-center text-muted" style="background-color:#0e0e0e; ">Board Info</li>
+    <li class="list-group-item text-muted" style="background-color:#0e0e0e; "><b>Title: </b>{{board.title}}</li>
+    <li class="list-group-item text-muted" style="background-color:#0e0e0e; "><b>Description: </b>{{board.description}}</li>
+    <li class="list-group-item text-muted" style="background-color:#0e0e0e; "><b>Total Posts: </b>{{board.submitted_subjects.count}}</li>
+    <li class="list-group-item text-muted" style="background-color:#0e0e0e; "><b>Admins: </b>
     {% for admin in board.get_admins %}
-        <a href="{% url 'user_profile' admin.username %}">{{admin.profile.screen_name}}</a></p>
+        <a href="{% url 'user_profile' admin.username %}" style="background-color:#0e0e0e; ">{{admin.profile.screen_name}}</a></p>
     {% endfor %}
     </li>
-    <li class="list-group-item"><b>Subscribers: </b><span id="board_subscribers">{{board.subscribers.count}}</span></li>
+    <li class="list-group-item text-muted"  style="background-color:#0e0e0e; "><b>Subscribers: </b><span id="board_subscribers">{{board.subscribers.count}}</span></li>
 
     {# ONLY ADMINS CAN VIEW THESE OPTIONS #}
     {% if admins %}
       {% if request.user in admins %}
-        <li class="list-group-item text-center text-muted">Board Controls</li>
-        <li class="list-group-item"><b>Edit board: </b><a href="{% url 'edit_board_cover' board.slug %}" title="Change the cover of this board">Change Cover</a></li>
+        <li class="list-group-item text-center text-muted" style="background-color:#0e0e0e; ">Board Controls</li>
+        <li class="list-group-item text-muted" style="background-color:#0e0e0e; "><b>Edit board: </b><a href="{% url 'edit_board_cover' board.slug %}" title="Change the cover of this board">Change Cover</a></li>
     {% endif %}
     {% endif %}
   </ul>
+  </div>>
 </div>
 
 

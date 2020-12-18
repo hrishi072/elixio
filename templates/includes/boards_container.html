@@ -14,19 +14,19 @@
     text-decoration: none;
     }
     #boards_container a:hover{
-    border: 1px solid #3f51b5;
+    border: 1px solid #ff4500;
     }
 </style>
 <div class="container" id="boards_container">
-  <h3 class="text-muted">Subscribed Boards</h3>
+  <h3  style="color: white;">Subscribed Boards</h3>
   {% for board in boards_list %}
     <a href="{{ board.get_absolute_url }}">{{ board.title }}</a>
   {% empty %}
     <h5>You have not <b>subscribed</b> any boards yet.</h5>
   {% endfor %}
   <p>
-  <a href="{% url 'view_all_boards' %}" class="btn btn-sm btn-primary">Discover boards</a>
-  <a href="{% url 'user_created_boards' user.username %}" class="btn btn-sm btn-primary">My boards</a>
+  <a href="{% url 'view_all_boards' %}" class="btn btn-sm btn-secondary">Discover boards</a>
+  <a href="{% url 'user_created_boards' user.username %}" class="btn btn-sm btn-secondary">My boards</a>
   </p>
 </div>
 

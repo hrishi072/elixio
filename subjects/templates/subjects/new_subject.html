@@ -9,6 +9,7 @@
 <form action="{% url 'new_subject' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ subject_form|crispy }}
-  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+  <button type="submit" class="btn btn-primary btn-block" style="background-color: #ff4500;">Submit</button>
+  <br>
 </form>
 {% endblock %}

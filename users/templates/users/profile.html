@@ -13,16 +13,16 @@
 
 <style>
 #profile_user_links a { border-radius: 100px; padding: 4px 15px; margin:15px; border: 1px solid #d6d6d6; }
-#profile_user_links a:hover { border: 1px solid #3f51b5; }
+#profile_user_links a:hover { border: 1px solid #ff4500; }
 </style>
 
 <div class="card" style="width:25%; float:left; border:none;">
   <img class="card-img-top" src="{{ user.profile.get_picture }}">
 </div>
 
-<div class="card" style="width:75%; float:right; border:none;">
+<div class="card" style="width:75%; float:right; background-color: #0e0e0e; border-color: #000000; border-radius: 5px;">
   <div class="card-body">
-    <h4 class="card-title">
+    <h4 class="card-title" style="color: white;" >
     {{ user.profile.screen_name }} &nbsp;
     {% ifequal request.user user %}
     {% else %}
@@ -84,12 +84,14 @@
     <p class="card-text"><strong>{{user.subscribed_boards.count}}</strong> boards subscribed.</p>
     <p class="card-text">Member since <span title="{{ user.profile.member_since|date:"D d M Y" }} | {{ user.profile.member_since|time:"H:i:s" }}">{{ user.profile.member_since|date:"M d Y" }}</span></p>
     <br>
-    <p id="profile_user_links" style="text-align:center;"><a href="{% url 'user_subscription_list' user.username %}" class="card-link">View subscription list</a><span> &middot; </span>
+
+    
+    <p id="profile_user_links" style="text-align:center;"><a href="{% url 'user_subscription_list' user.username %}" class="card-link">View subscription list</a>
     {% ifequal request.user user %}
     <a href="{% url 'profile_edit' %}" class="card-link">Edit profile</a><br><br>
-    <a href="{% url 'view_all_followers' %}" class="card-link">Followers</a><span> &middot; </span>
+    <a href="{% url 'view_all_followers' %}" class="card-link">Followers</a>
     <a href="{% url 'view_following' %}" class="card-link">Following</a><br><br>
-    <a href="{% url 'all_message_requests' %}" class="card-link">Message requests</a><span> &middot; </span>
+    <a href="{% url 'all_message_requests' %}" class="card-link">Message requests</a>
     <a href="{% url 'all_friends' %}" class="card-link">Contact list</a></p>
     {% endifequal %}
   </div>

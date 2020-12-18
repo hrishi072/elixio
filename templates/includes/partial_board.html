@@ -2,9 +2,9 @@
 {% load boards_tags %}
 
 {% for board in boards %}
-<div class="card" style="border:none; border-bottom:1px solid #dcd7d7; margin-bottom:5px;">
+<div class="card" style="background-color: #0e0e0e; border-color: #000000; border-radius: 5px;">
   <div class="card-body" style="padding:10px;">
-
+    
     <div style="float:left; width:80%;">
       <h5 style="font-size:16px;">
         <a href="{{ board.get_absolute_url }}" class="card-link">{{ board.title }}</a>

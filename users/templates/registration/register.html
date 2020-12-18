@@ -6,24 +6,23 @@
 {% block form_content %}
 {% include "includes/page_heading.html" with text="Register to Elixio" %}
 
+
 <form action="{% url 'signup' %}" method="post" data-check-username-url="{% url 'check_username' %}">
   {% csrf_token %}
   {{ user_form|crispy }}
-  <button type="submit" class="btn btn-success btn-block">Sign Up</button>
-  <small class="form-text text-muted text-center">
-    By signing up, you agree to our <a href="/legal/terms/">terms of service</a> &amp; <a href="/legal/privacy/">privacy policy</a>.
-  </small>
+ <!-- <div class="g-recaptcha mb-4" data-sitekey="6LcxazUUAAAAAJstEHfmrSDE5QFqSrPUHqozW9XQ"></div> -->
+  <button type="submit" class="btn btn-success btn-block" style="background-color: #ff4500;" >Sign Up</button>
+ 
 </form>
-
-<div class="card text-center mt-4">
+<div class="card text-center mt-4" style="background-color: #0e0e0e; border-color: #000000; border-radius: 5px;">
   <div class="card-body">
     Already have an account? <a href="{% url 'login' %}" class="card-link">Login</a>
   </div>
 </div>
-
+<br>
 <script type="text/javascript">
   // Check username availability.
-  $("#id_username").on("keyup change", function(){
+  $("#id_username").on("keyup change", function () {
     var username_field = $(this);
     var form = $(this).closest("form");
     $.ajax({

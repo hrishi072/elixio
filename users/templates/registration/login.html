@@ -9,25 +9,23 @@
 <form action="{% url 'login' %}" method="post">
   {% csrf_token %}
 
-  <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
+  <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField" style="color: #ffffff;">
       Username<span class="asteriskField">*</span> </label>
 <div class=""> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
-        maxlength="150" class="textinput textInput form-control" required="" id="id_username" id="div_id_password"
-        class="form-group"> <label for="id_password" class=" requiredField"><br>
-        Password<span class="asteriskField">*</span> </label>
+        maxlength="150" class="textinput textInput form-control" required="" id="username" id="div_id_password"
+        class="form-group"> <label for="id_password" class=" requiredField" style="color: #ffffff;"><br>
+        Password<span class="asteriskField" style="color: #ffffff;">*</span> </label>
       <div class=""> <input type="password" name="password" autocomplete="current-password"
-          class="textinput textInput form-control" required="" id="id_password"> </div>
+          class="textinput textInput form-control" required="" id="password"> </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary btn-block">Login</button>
-    <div class="text-center mt-4">
-      <a href="{% url 'password_reset' %}">Forgot password?</a>
-    </div>
+    <button type="submit" class="btn btn-primary btn-block" style="background-color: #ff4500;">Login</button>
+   
 </form>
 
 <div class="card text-center mt-4">
-  <div class="card-body">
-    Don't have an account? <a href="{% url 'signup' %}" class="card-link">Sign Up</a>
+  <div class="card-body" style="background-color: #0e0e0e;">
+    <a>Don't have an account? </a> <br><a href="{% url 'signup' %}" class="card-link">Sign Up</a>
   </div>
 </div>
 {% endblock %}

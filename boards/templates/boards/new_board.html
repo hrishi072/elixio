@@ -9,6 +9,7 @@
 <form action="{% url 'new_board' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ board_form|crispy }}
- <button type="submit" class="btn btn-success btn-block">Submit</button>
+ <button type="submit" class="btn btn-success btn-block" style="background-color: #ff4500;">Submit</button>
 </form>
+<br>
 {% endblock %}

@@ -46,16 +46,16 @@ def register_user(request):
                 )
             auth_login(request, auth)
             msg_txt = """
-                    <h4 class="alert-heading">
+                    <h4 class="alert-heading" >
                         Welcome to Elixio!
                     </h4>
-                    <p>
+                    <p style="color:#000000;">
                         Thanks for joining our community. Start sharing your ideas by posting
                         <a href="/new_post/" class="alert-link">new subject</a> or just create
                         your own <a href="/new_board/" class="alert-link">new board</a>.
                     </p>
                     <hr>
-                    <p class="mb-0">
+                    <p class="mb-0" style="color:#000000;">
                         Add your <a href="/profile_edit/" class="alert-link">profile info</a>,
                         so community members know you well.
                     </p>
