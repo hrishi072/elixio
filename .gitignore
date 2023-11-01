@@ -1,3 +1,5 @@
 output.png
 remaining pages.txt
 output.dot
+.vscode/
+__pycache__/
